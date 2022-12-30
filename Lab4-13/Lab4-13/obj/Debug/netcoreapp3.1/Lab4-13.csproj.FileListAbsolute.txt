@@ -3,3 +3,17 @@ C:\Users\Qwerty\source\repos\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.Gen
 C:\Users\Qwerty\source\repos\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.AssemblyInfoInputs.cache
 C:\Users\Qwerty\source\repos\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.AssemblyInfo.cs
 C:\Users\Qwerty\source\repos\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.csproj.CoreCompileInputs.cache
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\bin\Debug\netcoreapp3.1\Lab4-13.exe
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\bin\Debug\netcoreapp3.1\Lab4-13.deps.json
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\bin\Debug\netcoreapp3.1\Lab4-13.runtimeconfig.json
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\bin\Debug\netcoreapp3.1\Lab4-13.runtimeconfig.dev.json
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\bin\Debug\netcoreapp3.1\Lab4-13.dll
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\bin\Debug\netcoreapp3.1\Lab4-13.pdb
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.csproj.AssemblyReference.cache
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.GeneratedMSBuildEditorConfig.editorconfig
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.AssemblyInfoInputs.cache
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.AssemblyInfo.cs
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.csproj.CoreCompileInputs.cache
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.dll
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.pdb
+C:\Study\C#\Lab4-13\Lab4-13\Lab4-13\obj\Debug\netcoreapp3.1\Lab4-13.genruntimeconfig.cache

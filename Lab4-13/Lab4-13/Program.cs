@@ -8,7 +8,7 @@ namespace Lab5
     {
         Carbonara,
         WithMushrooms,
-        Gavaiska,
+        Hawaaian,
     }
 
     class Program
@@ -23,8 +23,10 @@ namespace Lab5
             Dialogues dialouges = new Dialogues(waiter);
             dialouges.Welcome();
             dialouges.Ask1();
-
-
+            PizzaName pizzaname = dialouges.Answer1();// в цьому рядку зберігаємо назву піци
+            
+            //передаємо офіціанту
+            //punct = Convert.ToInt32(Console.ReadLine());
 
 
         }
@@ -88,21 +90,32 @@ namespace Lab5
     }
     class Waiter : Employer
     {
-        PizzaName pizzaName;
         #region Construct
-        public Waiter()
-        {
-            experience = rnd.Next(2, 5);
-        }
+        public Waiter() { }
+
         #endregion
         #region Methods
-        WriteOrder
+        public void Order(PizzaName pizzaname)
+        {
+            MushroomPizza mushroomPizza = new MushroomPizza();
+            HawaiianPizza hawaiianPizza = new HawaiianPizza();
+            CarbonaraPizza carbonaraPizza = new CarbonaraPizza();   
+            switch (pizzaname)
+            {
+                case PizzaName.Hawaaian:
+                    Console.WriteLine($"Ваше замовлення:Гавайська піцца вагою {hawaiianPizza.Weight},сума до сплати {hawaiianPizza.Price} грн  ");
+                    break;
+                case PizzaName.Carbonara:
+                     Console.WriteLine($"Ваше замовлення:Гавайська піцца вагою {carbonaraPizza.Weight},сума до сплати {carbonaraPizza.Price} грн  ");
+                    break;
+            }
+            
+        }
         #endregion
     }
     class Dialogues
     {
         Waiter _waiter;
-        int punct;
         public Dialogues(Waiter waiter)
         {
             _waiter = waiter;
@@ -128,18 +141,8 @@ namespace Lab5
         public PizzaName Answer1()
         {
             return (PizzaName)Convert.ToInt32(Console.ReadLine());
-            //switch (punct)
-            //{
-            //    case 1:
-            //        //"1.Піца карбонара":
-            //        break;
-
-
-            //}
-
-
-
         }
+
     }
     class Chef : Employer
     {
@@ -171,8 +174,8 @@ namespace Lab5
     abstract class Pizza
     {
         #region Properties
-        protected int Weight { get; set; }
-        protected int Price { get; set; }
+        public int Weight { get; set; }
+        public int Price { get; set; }
         protected List<string> Ingredients = new List<string> { "Dough", "Tomato souce" };
         #endregion
         public Pizza()
@@ -226,4 +229,3 @@ namespace Lab5
 
 
 
-      
