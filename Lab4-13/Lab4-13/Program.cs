@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -19,12 +19,14 @@ namespace Lab5
             Waiter waiter = new Waiter();
             RegWorker regworker = new RegWorker();
             MidWorker midworker = new MidWorker();
-            Chef chef = new Chef();
+            Chef chef = new Chef(regworker, midworker);
             Dialogues dialouges = new Dialogues(waiter);
             dialouges.Welcome();
             dialouges.Ask1();
             PizzaName pizzaname = dialouges.Answer1();// в цьому рядку зберігаємо назву піци
-            
+            waiter.Order(pizzaname);
+            chief.Choose();
+
             //передаємо офіціанту
             //punct = Convert.ToInt32(Console.ReadLine());
 
@@ -38,27 +40,27 @@ namespace Lab5
         #region Enum
         enum Names
         {
-            Jack,
-            John,
-            Jason,
-            Peter,
-            Tom,
-            Rick,
-            Charles,
-            Mark,
-            Edvard,
-            Richard,
-            Elon,
-            Isaac,
-            Lisa,
-            Sophia,
-            Mia,
-            Charlotte,
-            Emma,
-            Olivia,
-            Isabella,
-            Camila,
-            Emily
+            Михайло,
+            Кирило,
+            Iлля,
+            Володимир,
+            Олександр,
+            Олександра,
+            Петро,
+            Борис,
+            Алiна,
+            Софiя,
+            Людмила,
+            Єлизавета,
+            Анастасiя,
+            Роман,
+            Юра,
+            Бен,
+            Едуард,
+            Тетяна,
+            Денис,
+            Вадим,
+            Мотря
         }
         #endregion
         #region Properties
@@ -85,7 +87,7 @@ namespace Lab5
     abstract class Employer : Person
     {
         protected Random rnd = new Random();
-        protected double experience;
+        public double experience;
 
     }
     class Waiter : Employer
@@ -97,19 +99,22 @@ namespace Lab5
         #region Methods
         public void Order(PizzaName pizzaname)
         {
-            MushroomPizza mushroomPizza = new MushroomPizza();
-            HawaiianPizza hawaiianPizza = new HawaiianPizza();
-            CarbonaraPizza carbonaraPizza = new CarbonaraPizza();   
+            Random rnd = new Random();
+            int delay = rnd.Next(5000, 15000);
             switch (pizzaname)
             {
                 case PizzaName.Hawaaian:
-                    Console.WriteLine($"Ваше замовлення:Гавайська піцца вагою {hawaiianPizza.Weight},сума до сплати {hawaiianPizza.Price} грн  ");
+                    Console.WriteLine($"Ваше замовлення:Гавайська пiца вагою {HawaiianPizza.Weight},сума до сплати {HawaiianPizza.Price} грн  ");
                     break;
                 case PizzaName.Carbonara:
-                     Console.WriteLine($"Ваше замовлення:Гавайська піцца вагою {carbonaraPizza.Weight},сума до сплати {carbonaraPizza.Price} грн  ");
+                    Console.WriteLine($"Ваше замовлення:Пiца карбонара вагою {CarbonaraPizza.Weight},сума до сплати {CarbonaraPizza.Price} грн  ");
+                    break;
+                case PizzaName.WithMushrooms:
+                    Console.WriteLine($"Ваше замовлення:Пiца з грибами вагою {MushroomPizza.Weight},сума до сплати {MushroomPizza.Price} грн  ");
                     break;
             }
-            
+            Console.WriteLine("Передаю ваше замовлення");
+            Thread.Sleep(delay);
         }
         #endregion
     }
@@ -125,17 +130,16 @@ namespace Lab5
             Random rnd = new Random();
             int delay = rnd.Next(1000, 5000);
             Console.WriteLine($"Добрий день, мене звати {_waiter.Name}, " +
-                $"сьогодні я буду вас обслуговувати, " +
+                $"сьогоднi я буду вас обслуговувати, " +
                 $"давайте пройдемо за столик");
             Thread.Sleep(delay);
         }
         public void Ask1()
         {
-            Console.WriteLine("У нас в меню є 3 види піци:");
-            Console.WriteLine("1. Піца карбонара");
-            Console.WriteLine("2. Піца з грибами");
-            Console.WriteLine("3. Гавайська піца");
-
+            Console.WriteLine("У нас в меню є 3 види пiци:");
+            Console.WriteLine("1. Пiца карбонара");
+            Console.WriteLine("2. Пiца з грибами");
+            Console.WriteLine("3. Гавайська пiца");
 
         }
         public PizzaName Answer1()
@@ -144,12 +148,50 @@ namespace Lab5
         }
 
     }
-    class Chef : Employer
+    class Chef : Employer // Реалізувати патерн одинак в цьому класі(((
     {
+        PizzaName _ordername;
+        RegWorker _regWorker;
+        MidWorker _midWorker;
         #region Construct
-        public Chef()
+        public Chef(RegWorker regworker, MidWorker midWorker)
         {
+            _regWorker = regworker;
+            _midWorker = midWorker;
             experience = rnd.Next(4, 10);
+        }
+        #endregion
+
+        #region Methods
+        public void TakeOrder(PizzaName pizzaname)
+        {
+            Random rnd = new Random();
+            int delay = rnd.Next(1000, 2000);
+            Console.WriteLine($"Шеф {Name} отримав ваше замовлення, а саме {pizzaname} ");
+            Thread.Sleep(delay);
+            _ordername = pizzaname;
+        }
+        public Pizza Choose()
+        {
+            int delay = rnd.Next(2000, 4000);
+            Console.WriteLine("Шеф розподiляє, кому доведеться зробити вашу пiцу");
+            switch (_ordername)
+            {
+                case PizzaName.Hawaaian:
+                    Console.WriteLine($"Вашим замовленням буде займатися сам Шеф {Name}, який вже працює в цьому залкаді" +
+                        $" {experience} років ");
+                    break;
+                case PizzaName.Carbonara:
+                    Console.WriteLine($"Вашим замовлення буде займатися працівник {_midWorker.Name}, який вже працює в цьому закладі" +
+                        $" {_midWorker.experience} ");
+                    return _midWorker.LetsArbaiten(_ordername);//зробити цей метод в класі працівник, в методі арбайтен ми описуємо процес приготування піци
+                    // 
+                    break;
+                case PizzaName.WithMushrooms:
+                    Console.WriteLine($"Вашим замовлення буде займатися працівник {_regWorker.Name}, який вже працює в цьому закладі" +
+                       $" {_regWorker.experience} ");
+                    break;
+            }
         }
         #endregion
     }
@@ -174,8 +216,8 @@ namespace Lab5
     abstract class Pizza
     {
         #region Properties
-        public int Weight { get; set; }
-        public int Price { get; set; }
+        public static int Weight { get; set; }
+        public static int Price { get; set; }
         protected List<string> Ingredients = new List<string> { "Dough", "Tomato souce" };
         #endregion
         public Pizza()
@@ -226,6 +268,3 @@ namespace Lab5
     }
 
 }
-
-
-
